@@ -3,7 +3,7 @@
 Our NextJS aplication manage a platform with diferent series recomendations and with users. In it you can see all the series that have been uploaded and rate them. Also, it allows you to upload new series to recommend, and you can filter by category, streaming service, rating, etc. To use the app you have to create a user or login with an already created one. It is developed using SSR so it render very quickly and it's optimized to be used in mobile devices.  
 
 ## Web
-Available in: [https://wasm.cparedesr.com](https://wasm.cparedesr.com)
+Available in: [https://wasm.cparedesr.com/next](https://wasm.cparedesr.com/next)
 
 ## Local
 Run `npm install` and `npm run dev`
