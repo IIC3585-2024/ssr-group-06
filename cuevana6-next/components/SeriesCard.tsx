@@ -6,8 +6,9 @@ interface SeriesCardProps {
         id: number;
         created_at: string;
         streaming_service: string;
-        description: string;
-        category: string;
+        name: string;
+        long_description: string;
+        categories: string[];
         average_rating: number;
         seasons: number;
         episodes_per_season: number;
@@ -62,9 +63,9 @@ const SeriesCard: React.FC<SeriesCardProps> = ({ series }) => {
     const streamingServiceDisplayName = STREAMING_SERVICES_DISPLAY_NAMES[series.streaming_service.toLowerCase()];
 
     return (
-    <div className="card bg-base-100 w-56 shadow-xl">
+    <a href={`/series/${series.id}`} className="card bg-base-100 w-64 md:w-56 shadow-xl">
         <figure>
-            <img src={series.image_url} alt={series.description} className="w-full h-72 object-fill" />
+            <img src={series.image_url} alt={series.name} className="w-full h-72 object-fill" />
             <div className={streamingServiceBadgeClasses}> {streamingServiceDisplayName} </div>
         </figure>
         <div className="flex flex-col items-center py-2 px-2">
@@ -84,7 +85,7 @@ const SeriesCard: React.FC<SeriesCardProps> = ({ series }) => {
                 { ratingStars }
             </div>
         </div>
-    </div>
+    </a>
     );
 };
 

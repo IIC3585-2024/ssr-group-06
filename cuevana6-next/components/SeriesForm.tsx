@@ -36,11 +36,12 @@ const SeriesForm: React.FC = () => {
     const [longDescription, setLongDescription] = useState('');
     const [categories, setCategories] = useState<string[]>([]);
     const [imageUrl, setImageUrl] = useState('');
-    const [averageRating, setAverageRating] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const supabase = createClient();
 
     const handleSubmit = async (e: React.FormEvent) => {
+        setIsLoading(true);
         e.preventDefault();
 
         const { data, error } = await supabase.from('series').insert([
@@ -51,7 +52,6 @@ const SeriesForm: React.FC = () => {
                 seasons: parseInt(seasons),
                 episodes_per_season: parseInt(episodesPerSeason),
                 categories,
-                average_rating: parseFloat(averageRating),
                 image_url: imageUrl,
             },
         ]);
@@ -65,13 +65,23 @@ const SeriesForm: React.FC = () => {
             setLongDescription('');
             setCategories([]);
             setImageUrl('');
-            setAverageRating('');
-            alert('Series added successfully!');
+
+            setTimeout(() => {
+                setIsLoading(false);
+                window.location.href = '/';
+            }, 1000);
         }
     };
 
     return (
-        <div className="container mx-auto px-4">
+        (isLoading && <div className='h-screen flex flex-col justify-center items-center text-4xl'>
+            <span className="loading loading-spinner loading-lg"></span>
+            <span>Loading...</span>
+        </div>) ||
+        <div className="container mx-auto px-4 py-16">
+            <a href="/" className="absolute top-2 left-0 m-2 p-4 w-32 btn btn-outline flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg> Back</a>
             <h1 className="text-2xl font-bold my-4">Add New Series</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <input
@@ -136,14 +146,6 @@ const SeriesForm: React.FC = () => {
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
                     placeholder="Image URL"
-                    required
-                    className="input input-bordered w-full"
-                />
-                <input
-                    type="number"
-                    value={averageRating}
-                    onChange={(e) => setAverageRating(e.target.value)}
-                    placeholder="Average Rating"
                     required
                     className="input input-bordered w-full"
                 />
