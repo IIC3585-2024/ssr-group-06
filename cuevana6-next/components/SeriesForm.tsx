@@ -78,7 +78,7 @@ const SeriesForm: React.FC = () => {
             <span className="loading loading-spinner loading-lg"></span>
             <span>Loading...</span>
         </div>) ||
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4">
             <a href="/" className="absolute top-2 left-0 m-2 p-4 w-32 btn btn-outline flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg> Back</a>

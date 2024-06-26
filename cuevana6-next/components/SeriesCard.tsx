@@ -53,7 +53,7 @@ const CATEGORY_BADGE_COLORS: Record<string, string> = {
 
 const SeriesCard: React.FC<SeriesCardProps> = ({ series }) => {
     const MAX_RATING = 5;
-    const rating = series.average_rating;
+    const rating = series?.average_rating;
     const ratingStars = Array.from({ length: MAX_RATING }, (_, i) => {
         return <input type="radio" name="rating-2" className={i < rating ? 'mask mask-star-2 bg-orange-400' : 'mask mask-star-2'} readOnly disabled />;
     });
