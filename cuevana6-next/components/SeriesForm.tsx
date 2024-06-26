@@ -1,5 +1,5 @@
 // src/components/SeriesForm.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/router';
 
@@ -36,9 +36,19 @@ const SeriesForm: React.FC = () => {
     const [longDescription, setLongDescription] = useState('');
     const [categories, setCategories] = useState<string[]>([]);
     const [imageUrl, setImageUrl] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const supabase = createClient();
+
+    useEffect(() => {
+        supabase.auth.getUser().then(({ data: user, error }) => {
+            if (!user.user) {
+                window.location.href = '/login';
+                return;
+            }
+            setIsLoading(false);
+        });
+    });
 
     const handleSubmit = async (e: React.FormEvent) => {
         setIsLoading(true);

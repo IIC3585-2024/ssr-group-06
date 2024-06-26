@@ -12,7 +12,7 @@ const SeriesForm: React.FC<{ seriesId: number }> = ({ seriesId }) => {
 
     useEffect(() => {
         supabase.auth.getUser().then(({ data: user, error }) => {
-            if (!user) {
+            if (!user.user) {
                 window.location.href = '/login';
             }
 
