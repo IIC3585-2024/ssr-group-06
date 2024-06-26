@@ -14,7 +14,7 @@ Run `npm install` and `npm run dev`
 - Rate series: In the details view it is possible to rate the series, from 1 to 5 stars.
 - Upload/Create series: Form to create a new series in the database, filling in all the necessary values. This way every user can upload a series to recommend it to the community.
 - Filters: It is possible to search for specific series by filters such as, categories, streaming services, rating, seasons, etc.
-- Login/SignUp: The application manages user authentication to enter the page. You can register with a simple form with username and password and then log in with those credentials.
+- Login/SignUp: The application manages user authentication to enter the page. You can register with a simple form with email and password and then log in with those credentials.
 
 ## Stack
 
